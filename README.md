@@ -7,9 +7,9 @@ $ curl https://install.meteor.com/ | sh
 
 $ cd /usr/scr
 
-$ git clone https://github.com/suntan/angular2-meteor-step.7to8.git
+$ git clone https://github.com/suntan/angular2-meteor-step.9to10.git
 
-$ mv angular2-meteor-step.7to8 my-app
+$ mv angular2-meteor-step.9to10 my-app
 
 $ cd my-app
 
@@ -36,6 +36,8 @@ $ meteor add accounts-password
 $ meteor npm install --save angular2-meteor-accounts-ui
 
 $ meteor remove autopublish
+
+$ typings install meteor (修正編譯時 Mongo、Meteor . . .Model Not Found 的錯誤訊息)
 
 
 用自己喜歡的 port 啟動(以下用1688為例)，輸入指令如下:
