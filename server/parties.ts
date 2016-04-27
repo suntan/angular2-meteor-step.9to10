@@ -1,25 +1,39 @@
-import {Parties} from '../collections/parties.ts';
-
+import {Parties} from '../collections/parties';
+ 
+Meteor.publish('parties', function() {
+  return Parties.find({
+    $or: [
+      { 'public': true },
+      {
+        $and: [
+          { owner: this.userId },
+          { owner: { $exists: true } }
+        ]
+      }
+    ]
+  });
+});
 
 function buildQuery(partyId?: string): Object {
-     var isAvailable = {
-        $or: [
-         { 'public': true },
-         {
-           $and: [
-             { owner: this.userId },
-             { owner: { $exists: true } }
-           ]
-         }
-       ]
-     };
-    
-     if (partyId) {
-       return { $and: [{ _id: partyId }, isAvailable] };
-     }
+  var isAvailable = {
+                $or: [
+                      { 'public': true },
+                      {
+                        $and: [
+                          { owner: this.userId },
+                          { owner: { $exists: true } }
+                        ]
+                      }
+                    ]
+                 };
  
-     return isAvailable;
+  if (partyId) {
+    return { $and: [{ _id: partyId }, isAvailable] };
+  }
+ 
+  return isAvailable;
 }
+
 
 Meteor.publish('parties', function() {
   return Parties.find(buildQuery.call(this));

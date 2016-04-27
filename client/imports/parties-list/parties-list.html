@@ -1,10 +1,9 @@
 <div>
-  <parties-form></parties-form>
-  <login-buttons></login-buttons>
   
   <input type="text" #searchtext placeholder="Search by Location">
   <button type="button" (click)="search(searchtext.value)">Search</button>
-
+  <parties-form></parties-form>
+  <login-buttons></login-buttons>
   <ul>
     <li *ngFor="#party of parties">
       <a [routerLink]="['/PartyDetails', {partyId: party._id}]">{{party.name}}</a>
@@ -15,3 +14,4 @@
     </li>
   </ul>
 </div>
+
